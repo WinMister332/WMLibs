@@ -1,0 +1,16 @@
+name: WMLib
+version: '${version}'
+main: net.winmister332.libs.WMLib
+api-version: '1.20'
+load: STARTUP
+dependencies:
+  - name: Vault
+    required: false
+  - name: LuckPerms
+    required: false
+  - name: PlaceholderAPI
+    required: false
+  - name: Multivese-Core
+    required: false
+authors: [WinMister332]
+description: A library for all WinMister332 plugins.

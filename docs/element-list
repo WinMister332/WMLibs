@@ -1,0 +1,11 @@
+net.winmister332.libs
+net.winmister332.libs.commands
+net.winmister332.libs.config
+net.winmister332.libs.events
+net.winmister332.libs.integration.papi
+net.winmister332.libs.integration.vault
+net.winmister332.libs.logging
+net.winmister332.libs.player
+net.winmister332.libs.services
+net.winmister332.libs.utils
+net.winmister332.libs.world

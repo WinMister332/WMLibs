@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+}
+
+group = 'net.winmister332'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "papermc-repo"
+        url = "https://repo.papermc.io/repository/maven-public/"
+    }
+    maven {
+        name = "sonatype"
+        url = "https://oss.sonatype.org/content/groups/public/"
+    }
+    maven { url = "https://repo.onarandombox.com/content/groups/public" }
+    maven { url = "https://mvnrepository.com/artifact/com.github.MilkBowl/VaultAPI/1.7.1" }
+    maven { url = "https://mvnrepository.com/artifact/org.bstats/bstats-bukkit" }
+    maven { url = "https://jitpack.io" }
+}
+
+dependencies {
+    compileOnly "io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT"
+    implementation "com.github.milkbowl:VaultAPI:1.7.1"
+    implementation "org.bstats:bstats-bukkit:3.0.2"
+    implementation 'com.github.PlaceholderAPI:PlaceholderAPI:2.11.4'
+    implementation "com.onarandombox.multiversecore:Multiverse-Core:4.2.2"
+}
+
+def targetJavaVersion = 17
+java {
+    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+    if (JavaVersion.current() < javaVersion) {
+        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
+        options.release = targetJavaVersion
+    }
+}
+
+processResources {
+    def props = [version: version]
+    inputs.properties props
+    filteringCharset 'UTF-8'
+    filesMatching('paper-plugin.yml') {
+        expand props
+    }
+}
